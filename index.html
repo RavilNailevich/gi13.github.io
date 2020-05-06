@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Гимназия интернат №13</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<meta property="og:title" content="Гимназия интернат №13" />
+	<meta property="og:description" content="Виртуальный тур по Гимназии интернату №13" />
+	<meta property="og:url" content="http://gi13.ru" />
+	<meta property="og:image" content="panos/introimage.jpg" />	
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
+</head>
+<body>
+
+<script src="tour.js"></script>
+
+<div id="pano" style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+	<script>
+		embedpano({swf:"tour.swf", xml:"tour.xml", target:"pano", html5:"only+webgl", mobilescale:1.0, passQueryParameters:true});
+	</script>
+	
+<script type="text/javascript">
+	function navigate(lat, lng) {
+    // If it's an iPhone..
+    if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+      function iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+          // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+          var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+          return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
+      }
+      var ver = iOSversion() || [0];
+
+      if (ver[0] >= 6) {
+        protocol = 'maps://';
+      } else {
+        protocol = 'http://';
+
+      }
+      window.location = protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
+    }
+    else {
+      window.open('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
+    }
+  }
+</script>
+
+</div>
+
+</body>
+</html>

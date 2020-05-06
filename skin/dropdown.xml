@@ -1,0 +1,90 @@
+<krpano>
+
+    <!-- sandwich button  -->
+    <!-- sandwich button  -->
+    <layer name="sandwich_btn" type="container" keep="true"  if="skin_settings.lng_change"
+        align="rightbottom" x.mobile="12" y.mobile="110" x.no-mobile="12" y.no-mobile="12" width="34" height="34"
+        bgcolor="0xffffff" bgalpha="0.7" bgcapture="true" alpha="0.7"
+        onclick="
+            
+            if(iscross, tosandwich();, tocross(); );
+        "
+        onover="
+            set(layer[sandwich_btn_1].bgcolor,0xfd8d23); set(layer[sandwich_btn_2].bgcolor,0xfd8d23); set(layer[sandwich_btn_3].bgcolor,0xfd8d23);
+            if(hints, hints.show(Menü); );
+        "
+        onout="
+            set(layer[sandwich_btn_1].bgcolor,0x004070); set(layer[sandwich_btn_2].bgcolor,0x004070); set(layer[sandwich_btn_3].bgcolor,0x004070);
+            if(hints, hints.hide(); );
+        "
+        tocross="
+            set(layer[sandwich_btn].iscross,true);
+            callwith(layer[sandwich_btn_1], tween(y|rotate|width,0|45|18,0.2); );
+            callwith(layer[sandwich_btn_2], tween(width,0,0.2); );;
+            callwith(layer[sandwich_btn_3], tween(y|rotate|width,0|-45|18,0.2); );
+            events.dispatch(onsandwichbtnactive);
+        "
+        tosandwich="
+            set(layer[sandwich_btn].iscross,false);
+            callwith(layer[sandwich_btn_1], tween(y|rotate|width,-6|0|18,0.3); );
+            callwith(layer[sandwich_btn_2], tween(width,18,0.3); );;
+            callwith(layer[sandwich_btn_3], tween(y|rotate|width,6|0|18,0.3); );
+            events.dispatch(onsandwichbtninactive);
+        "
+    >
+        <layer name="sandwich_btn_1" style="sandwich_btn" x="0" y="-6" />
+        <layer name="sandwich_btn_2" style="sandwich_btn" x="0" y="0" />
+        <layer name="sandwich_btn_3" style="sandwich_btn" x="0" y="6" />
+    </layer>
+
+    <style name="sandwich_btn" type="container" keep="true" align="center" width="18" height="2" bgcolor="0x004070" bgalpha="1"/>
+    <style name="sandwich_btn_disabled" type="container" bgcolor="0x959595" bgalpha="1"/>
+
+    <!-- sandwich button  -->
+    <!-- sandwich button  -->
+
+
+    <events name="dropdown_menu" keep="true"
+        onsandwichbtnactive="
+            callwith(layer[dropdown_menu], show() );
+        "
+        onsandwichbtninactive="
+            callwith(layer[dropdown_menu], hide() );    
+        "
+    />
+
+    <layer name="dropdown_menu" type="container" keep="true" maskchildren="true"
+        align="rightbottom" x="10" y.mobile="144" y.no-mobile="46" width="36" openwidth="120" height="0" openheight="140"
+        bgcolor="0xffffff" bgalpha="1"
+        show="
+            tween(width|height,calc(openwidth+'|'+openheight),0.2);
+        "
+        hide="
+            tween(width|height,36|0,0.3);
+        "
+    >
+        <layer name="dropdown_menu_item0" y="130" style="dropdown_menu_item" html="Arabic" onclick="lngchange(arb); callwith(layer[dropdown_menu], hide();); callwith(layer[sandwich_btn], tosandwich(););" />
+        <layer name="dropdown_menu_item0" y="90" style="dropdown_menu_item" html="Türkçe" onclick="lngchange(tur); callwith(layer[dropdown_menu], hide();); callwith(layer[sandwich_btn], tosandwich(););" />
+        <layer name="dropdown_menu_item1" y="50" style="dropdown_menu_item" html="English" onclick="lngchange(eng); callwith(layer[dropdown_menu], hide();); callwith(layer[sandwich_btn], tosandwich(););"/>
+        <layer name="dropdown_menu_item2" y="10" style="dropdown_menu_item" html="Русский" onclick="lngchange(rus); callwith(layer[dropdown_menu], hide();); callwith(layer[sandwich_btn], tosandwich(););"/>
+    </layer>
+
+
+    <style name="dropdown_menu_item" url="%SWFPATH%/plugins/textfield.swf" keep="true" active="false"
+        align="rightbottom" x="10" width="100" height="40"
+        onloaded="loadstyle(dropdown_menu_item_normal);" padding="8"
+        onover="loadstyle(dropdown_menu_item_active);"
+        onout="ifnot(active == true, loadstyle(dropdown_menu_item_normal) );"
+    />
+
+    <style name="dropdown_menu_item_normal" 
+        background="true" backgroundcolor="0xf5f5f5" backgroundalpha="1" 
+        css="color:#333333; font-family: Sans-serif, Arial; font-size:20px; text-align:left;"
+    />
+
+    <style name="dropdown_menu_item_active" 
+        background="true" backgroundcolor="0xff0000" backgroundalpha="1" 
+        css="color:#FFFFFF; font-family: Sans-serif, Arial; font-size:20px; text-align:left;"
+    />
+
+</krpano>

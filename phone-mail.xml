@@ -1,0 +1,9 @@
+<krpano>	
+<!-- 	"true" yerine "false" değiştirme ile tel buton kapanır, tel: +90.... tel numarası girilir, mail de aynı şekilde -->	
+	<skin_settings global_phonecallbutton="true"
+				   global_phonecallnumber="tel:+78555412778"
+				   global_mailbutton="true"
+				   global_mail="mailto:mail@gi13.ru?subject=из виртуального тура"
+	/>
+</krpano>
+
